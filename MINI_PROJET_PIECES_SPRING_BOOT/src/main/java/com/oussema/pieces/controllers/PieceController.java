@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.oussema.pieces.entities.Nature;
 import com.oussema.pieces.entities.Piece;
 import com.oussema.pieces.service.PieceService;
 
@@ -37,15 +36,7 @@ public class PieceController {
 			}
 
 
-		   @RequestMapping("/showCreate")
-			public String showCreate(ModelMap modelMap)
-			{
-				modelMap.addAttribute("piece", new Piece());
-				List<Nature> nats = pieceService.getAllNatures();
-				modelMap.addAttribute("mode", "new");
-				modelMap.addAttribute("natures", nats);
-				return "formPiece";
-			}
+		  
 		   
 		   
 			
@@ -95,34 +86,9 @@ public class PieceController {
 		}
 
 
-	@RequestMapping("/modifierPiece")
-	public String editerPiece(@RequestParam("id") Long id, ModelMap modelMap,
-			@RequestParam (name="page",defaultValue = "0") int page,
-			@RequestParam (name="size", defaultValue = "2") int size) {
-		Piece p = pieceService.getPiece(id);
-		List<Nature> nats = pieceService.getAllNatures();
-		modelMap.addAttribute("mode", "edit");
-		modelMap.addAttribute("piece", p);
-		modelMap.addAttribute("natures", nats);
-		modelMap.addAttribute("page", page);
-		modelMap.addAttribute("size", size);
-		
-		return "formPiece";
-	}
+
 	  
 	
 
-	@RequestMapping("/updatePiece")
-	public String updatePiece(@ModelAttribute("piece") Piece piece, @RequestParam("date") String date,
-			ModelMap modelMap) throws ParseException {
-		// conversion de la date
-		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-		Date dateCreation = dateformat.parse(String.valueOf(date));
-		piece.setDateCreation(dateCreation);
 
-		pieceService.updatePiece(piece);
-		List<Piece> piecs = pieceService.getAllPieces();
-		modelMap.addAttribute("pieces", piecs);
-		return "listePieces";
-	}
 }

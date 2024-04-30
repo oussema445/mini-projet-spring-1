@@ -6,9 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import com.oussema.pieces.entities.Nature;
 import com.oussema.pieces.entities.Piece;
-import com.oussema.pieces.repos.NatureRepository;
 import com.oussema.pieces.repos.PieceRepository;
 
 @Service
@@ -18,18 +16,14 @@ public class PieceServiceImpl implements PieceService{
 	PieceRepository pieceRepository;
 	
 	
-	@Autowired
-	NatureRepository natureRepository;
+	
 	
 	@Override
 	public Piece savePiece(Piece p) {
 		return pieceRepository.save(p);
 	}
 
-	@Override
-	public Piece updatePiece(Piece p) {
-		return pieceRepository.save(p);
-	}
+	
 
 	@Override
 	public void deletePiece(Piece p) {
@@ -60,10 +54,7 @@ public class PieceServiceImpl implements PieceService{
 		return pieceRepository.findAll(PageRequest.of(page, size));
 	}
 
-	@Override
-	public List<Nature> getAllNatures() {
-		return natureRepository.findAll();
-	}
+	
 
 	
 	

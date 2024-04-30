@@ -39,9 +39,7 @@ public class Piece {
 	private String model ;
 	
 	
-	@ManyToOne
-	private Nature nature;
-
+	
 
 
 	public Piece() {
@@ -111,14 +109,7 @@ public class Piece {
 
 
 
-	public Nature getNature() {
-		return nature;
-	}
 
-
-	public void setNature(Nature nature) {
-		this.nature = nature;
-	}
 
 
 	@Override

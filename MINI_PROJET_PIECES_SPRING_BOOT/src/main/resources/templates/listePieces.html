@@ -16,7 +16,7 @@
   <div class="card-body">    
       <table class="table table-striped">
         <tr>
-          <th>ID</th><th>Nom Piece</th><th>Prix</th><th>Date</th><th>model</th><th>Nature</th>
+          <th>ID</th><th>Nom Piece</th><th>Prix</th><th>Date Mise </th><th>model</th>
          </tr>  
            <tr th:each="p:${pieces.content}">
               <td th:text="${p.idPiece}"></td>
@@ -26,12 +26,6 @@
               <td th:text="${p.model}"></td>  
 
               
-               <td th:if= "${!#strings.isEmpty(p.nature)}" th:text="${p.nature.nomNat}"></td>
- 			   <td th:if= "${#strings.isEmpty(p.nature)}" th:text="${'Pas de Nature'}"></td> 
-              
-               
-             
-              <td><a class="btn btn-success" th:href="@{modifierPiece(id=${p.idPiece}, page=${currentPage},size=${size})}">Editer</a></td>
               <td><a class="btn btn-danger" onclick="return confirm('Etes-vous sûr ?')"
                 th:href="@{supprimerPiece(id=${p.idPiece}, page=${currentPage},size=${size})}">Supprimer</a></td> 
            </tr>             
